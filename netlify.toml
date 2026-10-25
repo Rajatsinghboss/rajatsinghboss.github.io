@@ -1,0 +1,6 @@
+[build]
+  publish = "inniya"
+  functions = "netlify/functions"
+
+[functions]
+  node_bundler = "esbuild"
