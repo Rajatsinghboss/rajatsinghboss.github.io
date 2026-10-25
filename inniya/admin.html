@@ -84,7 +84,8 @@
 <div class="field"><label for="contactEmail">Business email</label><input type="email" id="contactEmail" data-key="contactEmail" placeholder="hello@yourbrand.com"></div>
 <div class="field"><label for="contactPhone">Business phone</label><input id="contactPhone" data-key="contactPhone" placeholder="+91 ..."></div>
 <div class="field full"><label for="whatsappNumber">WhatsApp order number</label><input id="whatsappNumber" data-key="whatsappNumber" inputmode="numeric" placeholder="91XXXXXXXXXX"><span class="help">Enter country code + number using digits only, for example 91 followed by your 10-digit Indian number. This is the number customers should send orders to.</span></div>
-</div><p class="hint" style="margin-top:18px">The checkout prepares an order message and opens WhatsApp after you add your number. It does not collect payment or automatically store orders.</p></div>
+<div class="field full"><label for="paymentApiBase">Payment API base URL</label><input id="paymentApiBase" data-key="paymentApiBase" placeholder="https://inniya-payments.netlify.app"><span class="help">Netlify site that hosts the secure Razorpay functions. Keep the default unless your payment backend URL changes.</span></div>
+</div><p class="hint" style="margin-top:18px">Razorpay API keys must be stored as Netlify environment variables, never in this public configuration file. Payments will remain unavailable until the Netlify site is linked/deployed and keys are configured.</p></div>
 </section>
 
 <section class="section-view" data-panel="publish">
@@ -112,7 +113,7 @@ const CONFIG_PATH='inniya/site-config.json';
 const API='https://api.github.com/repos/'+REPO+'/contents/';
 let config={};let currentView='overview';let dirty=false;let saveInProgress=false;
 const $=id=>document.getElementById(id);
-const fieldKeys=['brandName','tagline','announcement','metaDescription','logoImage','primaryColor','accentColor','backgroundColor','heroEyebrow','heroTitleLine1','heroTitleAccent','heroTitleLine3','heroText','heroImage','heroStampTitle','heroStampText','storyEyebrow','storyTitle','storyParagraph1','storyParagraph2','storyImage','bannerTitle','bannerText','promiseTitle','promiseText','contactEmail','contactPhone','whatsappNumber'];
+const fieldKeys=['brandName','tagline','announcement','metaDescription','logoImage','primaryColor','accentColor','backgroundColor','heroEyebrow','heroTitleLine1','heroTitleAccent','heroTitleLine3','heroText','heroImage','heroStampTitle','heroStampText','storyEyebrow','storyTitle','storyParagraph1','storyParagraph2','storyImage','bannerTitle','bannerText','promiseTitle','promiseText','contactEmail','contactPhone','whatsappNumber','paymentApiBase'];
 function esc(v){return String(v==null?'':v).replace(/[&<>"']/g,function(ch){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[ch]})}
 function msg(text,kind){$('toast').textContent=text;$('toast').style.borderLeft=kind==='bad'?'4px solid #e17c72':'4px solid #c8b478';$('toast').classList.add('show');setTimeout(()=>$('toast').classList.remove('show'),5500)}
 function status(id,text,kind){const el=$(id);if(!el)return;el.textContent=text;el.className='status'+(kind?' '+kind:'')}
