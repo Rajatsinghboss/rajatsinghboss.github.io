@@ -1,0 +1,73 @@
+{
+  "brandName": "INNIYA",
+  "tagline": "A Better Choice, Every Day.",
+  "announcement": "A TASTE OF TRADITION · GOODNESS FROM BIHAR · MADE FOR EVERY HOME",
+  "logoImage": "",
+  "metaDescription": "INNIYA — traditional goodness inspired by Bihar. Discover Thekua and Indian pantry favourites.",
+  "heroEyebrow": "ROOTED IN TRADITION",
+  "heroTitleLine1": "Goodness from",
+  "heroTitleAccent": "Bihar",
+  "heroTitleLine3": "to your home.",
+  "heroText": "Discover familiar flavours, thoughtful ingredients and the warmth of Indian food traditions — lovingly brought into everyday moments.",
+  "heroImage": "https://images.unsplash.com/photo-1601050690597-df0568f70950?auto=format&fit=crop&w=1000&q=85",
+  "heroStampTitle": "Pure roots. Brighter tomorrows.",
+  "heroStampText": "A little tradition in every bite.",
+  "storyEyebrow": "OUR ROOTS, OUR PROMISE",
+  "storyTitle": "From a cherished tradition to your everyday table.",
+  "storyParagraph1": "INNIYA is a new food-brand concept inspired by the warmth of Bihar, the joy of sharing prasad and the simple comfort of traditional Indian flavours. Our journey begins with Thekua — with a long-term dream of bringing more regional favourites to homes across India.",
+  "storyParagraph2": "We believe good food should feel familiar, be presented thoughtfully and bring people closer together.",
+  "storyImage": "https://images.unsplash.com/photo-1603902690960-4b6a7a8f8e5b?auto=format&fit=crop&w=1000&q=85",
+  "bannerTitle": "Sharing a little tradition?",
+  "bannerText": "Build a thoughtful snack box for family, friends and festive moments.",
+  "promiseTitle": "Thoughtful by design.",
+  "promiseText": "We’re building the brand with a simple principle: respect tradition, be clear about what’s inside and earn customer trust.",
+  "contactEmail": "",
+  "contactPhone": "",
+  "whatsappNumber": "",
+  "products": [
+    {
+      "id": "thekua-200",
+      "name": "Signature Thekua",
+      "type": "Thekua",
+      "weight": "200 g",
+      "price": 99,
+      "badge": "Our first favourite",
+      "desc": "A traditional Bihari sweet snack for tea time and sharing.",
+      "img": "https://images.unsplash.com/photo-1601050690597-df0568f70950?auto=format&fit=crop&w=700&q=80",
+      "published": true
+    },
+    {
+      "id": "thekua-400",
+      "name": "Family Thekua Pack",
+      "type": "Thekua",
+      "weight": "400 g",
+      "price": 179,
+      "badge": "Family size",
+      "desc": "A bigger pack for family gatherings and festive moments.",
+      "img": "https://images.unsplash.com/photo-1606491956689-2ea866880c84?auto=format&fit=crop&w=700&q=80",
+      "published": true
+    },
+    {
+      "id": "makhana-100",
+      "name": "Roasted Makhana",
+      "type": "Snacks",
+      "weight": "100 g",
+      "price": 129,
+      "badge": "Coming soon",
+      "desc": "A light, crunchy pantry snack concept for everyday breaks.",
+      "img": "https://images.unsplash.com/photo-1599599810694-b5b37304c5d4?auto=format&fit=crop&w=700&q=80",
+      "published": false
+    },
+    {
+      "id": "chura-300",
+      "name": "Traditional Chura",
+      "type": "Pantry",
+      "weight": "300 g",
+      "price": 89,
+      "badge": "Coming soon",
+      "desc": "A pantry staple inspired by familiar regional kitchens.",
+      "img": "https://images.unsplash.com/photo-1586201375761-83865001e31c?auto=format&fit=crop&w=700&q=80",
+      "published": false
+    }
+  ]
+}
