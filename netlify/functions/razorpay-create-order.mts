@@ -39,6 +39,11 @@ function authHeader(keyId, keySecret) {
   return "Basic " + btoa(keyId + ":" + keySecret);
 }
 
+export const config = {
+  path: "/.netlify/functions/razorpay-create-order",
+  rateLimit: { windowSize: 60, windowLimit: 10, aggregateBy: ["ip"] }
+};
+
 export default async function handler(request) {
   if (request.method === "OPTIONS") {
     if (!validRequestOrigin(request)) return respond(request, { error: "Origin is not allowed." }, 403);
