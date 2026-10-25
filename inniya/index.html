@@ -92,13 +92,13 @@ async function startOnlinePayment(){
  const button=$('payOnline');button.disabled=true;const original=button.textContent;button.textContent='PLEASE WAIT…';
  try{
   const payload={items:productsData.filter(p=>cartState[p.id]).map(p=>({id:p.id,quantity:cartState[p.id]})),customer:{name:$('customerName').value.trim(),phone:$('customerPhone').value.trim(),address:$('customerAddress').value.trim(),note:$('customerNote').value.trim()}};
-  const orderResponse=await fetch(base+'/.netlify/functions/razorpay-create-order',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(payload)});
+  const orderResponse=await fetch(base+'/api/razorpay/create-order',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(payload)});
   const order=await orderResponse.json();
   if(!orderResponse.ok)throw new Error(order.error||'Could not start payment.');
   await loadRazorpayCheckout();
   const options={key:order.keyId,amount:order.amount,currency:order.currency||'INR',name:order.name||'INNIYA',description:order.description||'INNIYA food order',order_id:order.orderId,prefill:{name:$('customerName').value.trim(),contact:$('customerPhone').value.trim()},notes:{delivery_address:$('customerAddress').value.trim(),customer_note:$('customerNote').value.trim()},theme:{color:SITE_CONFIG.primaryColor||'#123d2d'},modal:{ondismiss:()=>toast('Checkout closed. Your basket is still saved.')},handler:async function(response){
     try{
-     const verifyResponse=await fetch(base+'/.netlify/functions/razorpay-verify-payment',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({orderId:order.orderId,paymentId:response.razorpay_payment_id,signature:response.razorpay_signature})});
+     const verifyResponse=await fetch(base+'/api/razorpay/verify-payment',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({orderId:order.orderId,paymentId:response.razorpay_payment_id,signature:response.razorpay_signature})});
      const result=await verifyResponse.json();
      if(!verifyResponse.ok||!result.ok)throw new Error(result.error||result.message||'Payment is not yet confirmed as captured. Please contact support before retrying.');
      $('checkoutModal').classList.remove('open');cartState={};renderCart();
