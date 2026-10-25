@@ -1,6 +1,6 @@
 # INNIYA — Storefront, Admin Studio and Razorpay checkout
 
-A responsive, static storefront concept for INNIYA, a Bihar-inspired Indian food brand. It includes product browsing, cart, a GitHub-backed content editor, and a Razorpay checkout frontend with Netlify server-side order creation and verification.
+A responsive, static storefront demo for INNIYA, a Bihar-inspired Indian food brand. It includes eight visible sample products with illustrative prices, product browsing, cart, a GitHub-backed content editor, and a Razorpay checkout frontend with Netlify server-side order creation and verification.
 
 ## Links
 - Current GitHub Pages storefront: https://rajatsinghboss.github.io/inniya/
