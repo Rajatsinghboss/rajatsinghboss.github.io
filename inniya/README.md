@@ -1,36 +1,29 @@
-# INNIYA — E-commerce storefront
+# INNIYA — Storefront and Admin Studio
 
-A responsive, single-page storefront concept for INNIYA, a Bihar-inspired Indian food brand.
+A responsive, static storefront concept for INNIYA, a Bihar-inspired Indian food brand.
 
-## Preview
-If GitHub Pages is enabled for `Rajatsinghboss.github.io`, visit:
-https://rajatsinghboss.github.io/inniya/
+## Links
+- Storefront: https://rajatsinghboss.github.io/inniya/
+- Admin Studio: https://rajatsinghboss.github.io/inniya/admin.html
+- Repository folder: https://github.com/Rajatsinghboss/rajatsinghboss.github.io/tree/main/inniya
 
-## Included
-- Responsive mobile-first storefront in plain HTML, CSS and JavaScript
-- Product category filters and search
-- Add-to-cart, quantity controls and subtotal
-- Checkout form that prepares an order message
-- Premium cream, deep green and gold visual direction inspired by the supplied INNIYA brand reference
-- No build step or paid framework required
+## Admin features
+Edit brand name, tagline, announcement, logo image, theme colours, homepage headline/copy/images, story section, promotion banner, promise-section intro, product details, categories, pack sizes, prices, badges, descriptions, photos, product visibility, contact details and WhatsApp order number. Add or remove products, upload images under 900 KB, and import/export a JSON backup.
 
-## Before accepting real orders
-This is a front-end prototype, not a production-ready commerce system. Product prices, product photography, ingredients, allergens, shelf life, FSSAI/licence information, legal label details, shipping policy, refund policy and customer support information must be verified and completed before launch.
+## Publish changes to the public store
+The admin updates `inniya/site-config.json` using the GitHub Contents API.
 
-### Activate WhatsApp orders
-Open `index.html` and replace the empty value here with your business WhatsApp number in international format, digits only (India example: `91XXXXXXXXXX`):
+1. Create a **fine-grained personal access token** at https://github.com/settings/personal-access-tokens/new.
+2. Select **Only select repositories** and choose `Rajatsinghboss/rajatsinghboss.github.io`.
+3. Give only **Contents: Read and write** permission (metadata read is automatic).
+4. Open Admin Studio, go to **Publish & backup**, paste the token, then click **Publish changes**.
+5. The token is not saved to localStorage or repository files and is cleared after a successful publish.
+6. GitHub Pages may take a few minutes to rebuild before the changes appear.
 
-```js
-const WHATSAPP_NUMBER = '';
-```
+Never use a broad-scope classic token or share your token. Revoke it from GitHub settings if you suspect exposure. Never put payment-provider secret keys in this static page.
 
-Do not use a personal or agency number unless it is the number you want customers to contact for INNIYA orders.
-
-### Add the real brand image
-The supplied image was used as the visual reference for the design. To include the original file in the repository, upload it to `assets/inniya-brand-reference.jpg` and update the relevant image paths if you want it displayed on the storefront. Product photos in this prototype are illustrative remote images and must be replaced with real product photos before launch.
-
-### Payments and order management
-No payment gateway, inventory database, order database, email marketing service or admin dashboard is connected yet. To accept payments online, connect a provider such as Razorpay or Cashfree through a secure backend/serverless function and configure order storage, payment verification, privacy notices and fulfilment workflow. Never put secret API keys in front-end code.
+## Important launch limitations
+This is a front-end storefront and content manager, not a complete production commerce backend. No payment gateway is connected; orders are not stored in an order database; there is no inventory tracking, shipping integration, customer accounts or admin order list. Product prices and photos are illustrative until you confirm them. Complete the product labels, ingredient/allergen information, food registration details, shipping/refund policy and support contacts before accepting orders. Upload your approved logo and actual product photos in Admin Studio.
 
 ## Run locally
-Open `index.html` in a browser. No installation required.
+Open `index.html` for a static preview. For admin operation, use the GitHub Pages-hosted `admin.html`.
