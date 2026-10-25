@@ -30,7 +30,7 @@ The code is committed, but online payments will not work until the Netlify proje
 2. Go to **Project configuration → Developer settings → Continuous deployment → Repository**.
 3. Choose **Link repository**, select GitHub, and choose `Rajatsinghboss/rajatsinghboss.github.io` on branch `main`.
 4. Ensure the base directory is the repository root, publish directory is `inniya`, and functions directory is `netlify/functions`. The checked-in `netlify.toml` already declares these settings.
-5. Start the deployment and wait for it to finish. The payment API endpoint is then expected at `https://inniya-payments.netlify.app/.netlify/functions/razorpay-create-order`.
+5. Start the deployment and wait for it to finish. The payment API endpoints are then expected at `https://inniya-payments.netlify.app/api/razorpay/create-order` and `https://inniya-payments.netlify.app/api/razorpay/verify-payment`.
 
 If the repository isn't listed, use Netlify's GitHub connection prompt to grant the Netlify GitHub App access to this repository.
 
