@@ -54,21 +54,21 @@ $('cartOpen').onclick=openCart;$('cartClose').onclick=closeCart;$('overlay').onc
 $('checkout').onclick=()=>{if(!cartTotals().count){toast('Add a product before ordering');return}closeCart();$('checkoutModal').classList.add('open')};$('modalClose').onclick=$('cancelCheckout').onclick=()=>$('checkoutModal').classList.remove('open');$('checkoutModal').addEventListener('click',e=>{if(e.target===$('checkoutModal'))$('checkoutModal').classList.remove('open')});
 function orderMessage(){
  const t=cartTotals();
- const items=productsData.filter(p=>cartState[p.id]).map(p=>p.name+' ('+p.weight+') x '+cartState[p.id]+' = '+rupees(p.price*cartState[p.id])).join('\\n');
- return 'Hello INNIYA, I would like to place an order.\\n\\n'+items+'\\n\\nSubtotal: '+rupees(t.total)+'\\nName: '+$('customerName').value+'\\nPhone: '+$('customerPhone').value+'\\nAddress: '+$('customerAddress').value+'\\nNote: '+$('customerNote').value+'\\n\\nPlease confirm availability, price and delivery charges.';
+ const items=productsData.filter(p=>cartState[p.id]).map(p=>p.name+' ('+p.weight+') x '+cartState[p.id]+' = '+rupees(p.price*cartState[p.id])).join('\n');
+ return 'Hello INNIYA, I would like to place an order.\n\n'+items+'\n\nSubtotal: '+rupees(t.total)+'\nName: '+$('customerName').value+'\nPhone: '+$('customerPhone').value+'\nAddress: '+$('customerAddress').value+'\nNote: '+$('customerNote').value+'\n\nPlease confirm availability, price and delivery charges.';
 }
 $('checkoutForm').addEventListener('submit',e=>{
  e.preventDefault();
  const msgText=orderMessage();
- if(/^\\d{10,15}$/.test(WHATSAPP_NUMBER)){
+ if(/^\d{10,15}$/.test(WHATSAPP_NUMBER)){
    window.open('https://wa.me/'+WHATSAPP_NUMBER+'?text='+encodeURIComponent(msgText),'_blank','noopener');
  }else{
    if(navigator.clipboard&&navigator.clipboard.writeText)navigator.clipboard.writeText(msgText).then(()=>toast('Order message copied. Add your business WhatsApp number to activate direct ordering.')).catch(()=>{});
-   alert('WhatsApp ordering is not configured yet. Your order message is:\\n\\n'+msgText);
+   alert('WhatsApp ordering is not configured yet. Your order message is:\n\n'+msgText);
  }
 });
 function paymentApiBase(){
- const configured=String(SITE_CONFIG.paymentApiBase||'').trim().replace(/\\/+$/,'');
+ const configured=String(SITE_CONFIG.paymentApiBase||'').trim().replace(/\/+$/,'');
  if(configured)return configured;
  if(location.hostname.endsWith('.netlify.app'))return location.origin;
  return '';
@@ -102,8 +102,8 @@ async function startOnlinePayment(){
      const result=await verifyResponse.json();
      if(!verifyResponse.ok||!result.ok)throw new Error(result.error||result.message||'Payment is not yet confirmed as captured. Please contact support before retrying.');
      $('checkoutModal').classList.remove('open');cartState={};renderCart();
-     alert('Payment confirmed by Razorpay!\\nOrder: '+result.receipt+'\\nPayment ID: '+result.paymentId+'\\nAmount: '+rupees(result.amount/100)+'\\nPlease keep this confirmation for your records.');
-    }catch(err){alert(err.message+'\\n\\nDo not pay again until you check your Razorpay payment status.');}
+     alert('Payment confirmed by Razorpay!\nOrder: '+result.receipt+'\nPayment ID: '+result.paymentId+'\nAmount: '+rupees(result.amount/100)+'\nPlease keep this confirmation for your records.');
+    }catch(err){alert(err.message+'\n\nDo not pay again until you check your Razorpay payment status.');}
    }};
   const checkout=new window.Razorpay(options);
   checkout.on('payment.failed',function(response){const detail=response&&response.error&&response.error.description?response.error.description:'Payment failed or was cancelled.';toast(detail+' You can retry or choose WhatsApp ordering.')});
