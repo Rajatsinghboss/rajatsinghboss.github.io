@@ -1,29 +1,61 @@
-# INNIYA — Storefront and Admin Studio
+# INNIYA — Storefront, Admin Studio and Razorpay checkout
 
-A responsive, static storefront concept for INNIYA, a Bihar-inspired Indian food brand.
+A responsive, static storefront concept for INNIYA, a Bihar-inspired Indian food brand. It includes product browsing, cart, a GitHub-backed content editor, and a Razorpay checkout frontend with Netlify server-side order creation and verification.
 
 ## Links
-- Storefront: https://rajatsinghboss.github.io/inniya/
+- Current GitHub Pages storefront: https://rajatsinghboss.github.io/inniya/
 - Admin Studio: https://rajatsinghboss.github.io/inniya/admin.html
-- Repository folder: https://github.com/Rajatsinghboss/rajatsinghboss.github.io/tree/main/inniya
+- GitHub source: https://github.com/Rajatsinghboss/rajatsinghboss.github.io/tree/main/inniya
+- Netlify payment project: https://app.netlify.com/projects/inniya-payments
+- Intended Netlify storefront/backend URL after deployment: https://inniya-payments.netlify.app/
 
 ## Admin features
-Edit brand name, tagline, announcement, logo image, theme colours, homepage headline/copy/images, story section, promotion banner, promise-section intro, product details, categories, pack sizes, prices, badges, descriptions, photos, product visibility, contact details and WhatsApp order number. Add or remove products, upload images under 900 KB, and import/export a JSON backup.
+Edit brand name, tagline, announcement, logo image, theme colours, homepage text/images, story section, promotion banner, promise intro, product details, categories, pack sizes, prices, badges, descriptions, photos, product visibility, contact details, WhatsApp order number, and payment API base URL. Add/remove products, upload images under 900 KB, and import/export a JSON backup.
 
-## Publish changes to the public store
-The admin updates `inniya/site-config.json` using the GitHub Contents API.
+## Razorpay integration
+- Server-side order creation: `netlify/functions/razorpay-create-order.mts`
+- Server-side verification: `netlify/functions/razorpay-verify-payment.mts`
+- Netlify build config: `netlify.toml`
+- Prices are calculated server-side from `inniya/site-config.json`; the checkout never trusts a price supplied by the browser.
+- The server verifies Razorpay's HMAC signature and independently checks the order/payment association, amount, currency and captured status.
+- Payment endpoints use per-IP rate limits and an origin allowlist.
+- The payment API base URL is set in `site-config.json` and can also be edited from Admin Studio.
+- Customer/order details are attached to the Razorpay order notes, but this prototype does not store orders in its own database or provide an admin order list.
 
-1. Create a **fine-grained personal access token** at https://github.com/settings/personal-access-tokens/new.
-2. Select **Only select repositories** and choose `Rajatsinghboss/rajatsinghboss.github.io`.
-3. Give only **Contents: Read and write** permission (metadata read is automatic).
-4. Open Admin Studio, go to **Publish & backup**, paste the token, then click **Publish changes**.
-5. The token is not saved to localStorage or repository files and is cleared after a successful publish.
-6. GitHub Pages may take a few minutes to rebuild before the changes appear.
+## Required setup before a test payment
+The code is committed, but online payments will not work until the Netlify project is linked and deployed and Razorpay keys have been configured.
 
-Never use a broad-scope classic token or share your token. Revoke it from GitHub settings if you suspect exposure. Never put payment-provider secret keys in this static page.
+### A. Link the Netlify project to GitHub
+1. Open https://app.netlify.com/projects/inniya-payments.
+2. Go to **Project configuration → Developer settings → Continuous deployment → Repository**.
+3. Choose **Link repository**, select GitHub, and choose `Rajatsinghboss/rajatsinghboss.github.io` on branch `main`.
+4. Ensure the base directory is the repository root, publish directory is `inniya`, and functions directory is `netlify/functions`. The checked-in `netlify.toml` already declares these settings.
+5. Start the deployment and wait for it to finish. The payment API endpoint is then expected at `https://inniya-payments.netlify.app/.netlify/functions/razorpay-create-order`.
 
-## Important launch limitations
-This is a front-end storefront and content manager, not a complete production commerce backend. No payment gateway is connected; orders are not stored in an order database; there is no inventory tracking, shipping integration, customer accounts or admin order list. Product prices and photos are illustrative until you confirm them. Complete the product labels, ingredient/allergen information, food registration details, shipping/refund policy and support contacts before accepting orders. Upload your approved logo and actual product photos in Admin Studio.
+If the repository isn't listed, use Netlify's GitHub connection prompt to grant the Netlify GitHub App access to this repository.
 
-## Run locally
-Open `index.html` for a static preview. For admin operation, use the GitHub Pages-hosted `admin.html`.
+### B. Add Razorpay TEST credentials securely
+1. Log into https://dashboard.razorpay.com and switch to **Test Mode**.
+2. Generate or view the test API keys from the Razorpay dashboard API keys area.
+3. In Netlify, open the `inniya-payments` project and go to **Project configuration → Environment variables**.
+4. Add `RAZORPAY_KEY_ID` with the Razorpay test Key ID.
+5. Add `RAZORPAY_KEY_SECRET` with the Razorpay test Key Secret. Mark it secret and make sure it is available to Functions (or all scopes if that is the only option).
+6. Redeploy the Netlify site after setting the variables. Keep the secret only in Netlify; never put it in HTML, JSON, GitHub, or chat.
+
+The non-secret `PAYMENT_ALLOWED_ORIGINS` variable is already configured for `https://rajatsinghboss.github.io` and `https://inniya-payments.netlify.app`. Update it in Netlify if you change domains.
+
+### C. Test before going live
+1. Open the storefront and add a published product to the cart.
+2. Enter customer and delivery details, then choose **Pay online**.
+3. Complete a test-mode transaction using the test payment flow provided by Razorpay.
+4. Confirm the verify response reports a captured payment and check the order in Razorpay Test Mode.
+5. After testing, complete Razorpay account activation/KYC and use Live Mode keys in Netlify only when ready to accept real money.
+
+Razorpay requires server-created orders and server-side signature/payment-status verification. See the official [Standard Checkout integration guide](https://razorpay.com/docs/payments/payment-gateway/web-integration/standard/integration-steps/) and [Netlify repository linking docs](https://docs.netlify.com/build/git-workflows/repo-permissions-linking/).
+
+## Important limitations
+- No payment gateway is active until the Netlify Git deployment and Razorpay keys are configured.
+- Orders aren't persisted to a separate order database; order notes and transactions can be reviewed in Razorpay's dashboard. No inventory tracking, shipping API, email notification or admin orders panel is connected.
+- Payment capture must be enabled/configured appropriately in Razorpay; the verification function treats an order as paid only when Razorpay reports the payment captured and order paid.
+- Product prices and photos are illustrative until verified. Complete legal food labels, ingredients/allergens, applicable food registration details, shipping/refund policies and customer support details before selling.
+- Never place any Razorpay secret or GitHub access token in public code.
