@@ -33,7 +33,7 @@
       "price": 99,
       "badge": "DEMO BESTSELLER",
       "desc": "A classic Bihar-inspired sweet snack concept for tea time and sharing.",
-      "img": "https://naaveli.com/2.jpg",
+      "img": "https://images.unsplash.com/photo-1601050690597-df0568f70950?auto=format&fit=crop&w=700&q=80",
       "published": true
     },
     {
@@ -44,7 +44,7 @@
       "price": 179,
       "badge": "DEMO FAMILY PACK",
       "desc": "A larger Thekua pack concept for family gatherings and festive moments.",
-      "img": "https://c.ndtvimg.com/2025-10/c1kssie4_food_625x300_22_October_25.jpg?im=FeatureCrop%2Calgorithm%3Ddnn%2Cwidth%3D1200%2Cheight%3D675",
+      "img": "https://images.unsplash.com/photo-1606491956689-2ea866880c84?auto=format&fit=crop&w=700&q=80",
       "published": true
     },
     {
@@ -55,7 +55,7 @@
       "price": 129,
       "badge": "DEMO SNACK",
       "desc": "A sample listing for roasted makhana. Confirm recipe, ingredients and weight before launch.",
-      "img": "https://bijamrit.com/images/classic-bowl.webp",
+      "img": "https://images.unsplash.com/photo-1599599810694-b5b37304c5d4?auto=format&fit=crop&w=700&q=80",
       "published": true
     },
     {
@@ -77,7 +77,7 @@
       "price": 99,
       "badge": "DEMO PANTRY",
       "desc": "Sample sattu listing. Final sourcing, pack size and product details are to be confirmed.",
-      "img": "https://images.unsplash.com/photo-1601050690597-df0568f70950?auto=format&fit=crop&w=700&q=80",
+      "img": "https://images.unsplash.com/photo-1547592180-85f173990554?auto=format&fit=crop&w=700&q=80",
       "published": true
     },
     {
@@ -99,7 +99,7 @@
       "price": 139,
       "badge": "DEMO PANTRY",
       "desc": "A sample regional pantry product. Actual recipe, allergens and storage details must be confirmed.",
-      "img": "https://images.unsplash.com/photo-1601050690597-df0568f70950?auto=format&fit=crop&w=700&q=80",
+      "img": "https://images.unsplash.com/photo-1547592180-85f173990554?auto=format&fit=crop&w=700&q=80",
       "published": true
     },
     {
@@ -110,7 +110,7 @@
       "price": 299,
       "badge": "DEMO GIFT BOX",
       "desc": "A sample festive gifting concept; final contents and packaging are not yet confirmed.",
-      "img": "https://naaveli.com/2.jpg",
+      "img": "https://images.unsplash.com/photo-1601050690597-df0568f70950?auto=format&fit=crop&w=700&q=80",
       "published": true
     }
   ],
