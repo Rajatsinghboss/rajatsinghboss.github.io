@@ -72,5 +72,6 @@
   ],
   "primaryColor": "#123d2d",
   "accentColor": "#b69a58",
-  "backgroundColor": "#fffdf8"
+  "backgroundColor": "#fffdf8",
+  "paymentApiBase": "https://inniya-payments.netlify.app"
 }
