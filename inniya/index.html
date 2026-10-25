@@ -55,6 +55,9 @@ $('subscribeForm').addEventListener('submit',e=>{e.preventDefault();toast('Thank
 function setText(selector,value){if(value===undefined||value===null)return;document.querySelectorAll(selector).forEach(el=>el.textContent=value)}
 function applySiteConfig(c){
  if(!c||typeof c!=='object')return;
+ if(c.primaryColor)document.documentElement.style.setProperty('--green',c.primaryColor);
+ if(c.accentColor)document.documentElement.style.setProperty('--gold',c.accentColor);
+ if(c.backgroundColor)document.documentElement.style.setProperty('--paper',c.backgroundColor);
  setText('.wordmark',c.brandName);setText('.tagline',c.tagline);setText('.announcement',c.announcement);
  if(c.logoImage!==undefined){document.querySelectorAll('.leafmark').forEach(el=>{if(c.logoImage){el.textContent='';el.style.backgroundImage='url("'+c.logoImage.replace(/"/g,'%22')+'")';el.style.backgroundSize='contain';el.style.backgroundPosition='center';el.style.backgroundRepeat='no-repeat';el.style.border='0'}else{el.textContent='♧';el.style.backgroundImage='none';el.style.border=''}})}
  if(c.heroEyebrow!==undefined)setText('.hero .eyebrow',c.heroEyebrow);
