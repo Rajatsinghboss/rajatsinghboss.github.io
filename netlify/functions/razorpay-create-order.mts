@@ -40,7 +40,7 @@ function authHeader(keyId, keySecret) {
 }
 
 export const config = {
-  path: "/.netlify/functions/razorpay-create-order",
+  path: "/api/razorpay/create-order",
   rateLimit: { windowSize: 60, windowLimit: 10, aggregateBy: ["ip"] }
 };
 
