@@ -43,7 +43,7 @@ function authHeader(keyId, keySecret) {
 }
 
 export const config = {
-  path: "/.netlify/functions/razorpay-verify-payment",
+  path: "/api/razorpay/verify-payment",
   rateLimit: { windowSize: 60, windowLimit: 20, aggregateBy: ["ip"] }
 };
 
